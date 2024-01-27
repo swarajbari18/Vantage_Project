@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ird&$h#%q@99zi+hj2!!uv&&71i4h4+*df0g)!h!(#%ol31hdy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Forex_endpoint.wsgi.application'
+WSGI_APPLICATION = 'Forex_endpoint.wsgi.app'
 
 
 # Database
