@@ -1,3 +1,5 @@
 django
 pandas
 requests
+
+# Since vercel did not support the latest 5.0.3 version of django, I unfreezed all the requirements 

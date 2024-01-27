@@ -133,5 +133,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+# Usiong a .env file in production is not a good practse, for that I have not includes a .env file, 
+# While runing this software be sure to export your 'VANTAGE_API_KEY to the environemnt
+# For vercel, there is an option to set variables yourself
 API_KEY = os.getenv('VANTAGE_API_KEY')
