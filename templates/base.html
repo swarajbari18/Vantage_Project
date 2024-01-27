@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}FOREX AlphaVantage{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    {% load static %}
+  </head>
+
+  <div class="container text-center py-3">
+    <a href="/">
+        <img src="{% static 'logo.png' %}" alt="Logo" height="50">
+        <h3 class="mt-2">FOREX AlphaVantage</h3>
+    </a>
+</div>
+  
+  <div class="d-flex gap-2 justify-content-center py-5">
+    <a class="btn btn-primary rounded-pill px-3" type="a" href="realtime">Currency Exchange Rate</a>
+    <a class="btn btn-success rounded-pill px-3" type="a" href="daily">Daily Exchange Rate</a>
+    <a class="btn btn-danger rounded-pill px-3" type="a" href="weekly">Weekly Exchange Rate</a>
+    <a class="btn btn-warning rounded-pill px-3" type="a" href="monthly">Monthly Exchange Rate</a>
+    <a class="btn btn-secondary rounded-pill px-3" type="a" href="interval">Intraday Exchange Rate</a>
+  </div>
+
+
+  {% block body %}
+  <div class="container">
+    <form method='post' action='{{ request.path }}'>
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="fromCurrencySelector" class="form-label">From:</label>
+        <select class="form-select" id="fromSelector" name="from" aria-label="Select From">
+          <!-- Add options for 'From' -->
+          <option value="usd">USD</option>
+          <option value="eur">EUR</option>
+          <option value="gbp">GBP</option>
+          <option value="jpy">JPY</option>
+          <option value="aud">AUD</option>
+          <option value="cad">CAD</option>
+        </select>
+      </div>
+    
+      <div class="mb-3">
+        <label for="toCurrencySelector" class="form-label">To:</label>
+        <select class="form-select" id="toSelector" name="to" aria-label="Select To">
+          <!-- Add options for 'To' -->
+          <option value="jpy">JPY</option>
+          <option value="aud">AUD</option>
+          <option value="cad">CAD</option>
+          <option value="usd">USD</option>
+          <option value="eur">EUR</option>
+          <option value="gbp">GBP</option>
+        </select>
+      </div>
+
+      {% block input %}{% endblock %}
+
+      <!-- Fetch button -->
+      <button type="submit" class="btn btn-primary">FETCH FOREX</button>
+
+    </form>
+  </div>
+  {% endblock %}
+
+
+  <div class="container">
+    {% if html_table %}
+      {{ html_table|safe }}
+    {% else %}
+        <p>Happy Investing</p>
+    {% endif %}
+  </div>
+
+
+
+</html>
